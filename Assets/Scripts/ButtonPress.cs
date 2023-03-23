@@ -5,16 +5,19 @@ using UnityEngine;
 public class ButtonPress : MonoBehaviour
 {
     [SerializeField] int btnNbr;
+    [SerializeField] GameObject button;
+    [SerializeField] CalculateAndDisplay screen;
 
-    
-    void Start()
+    public void IsPressed()
     {
-        
+        screen.ButtonIsPressed(btnNbr);
+        StartCoroutine(AnimButton());
     }
-
-    // Update is called once per frame
-    void Update()
+    IEnumerator AnimButton()
     {
-        
+        button.gameObject.transform.position -= new Vector3(0.1f,0,0);
+        yield return new WaitForSeconds(0.1f);
+        button.gameObject.transform.position -= new Vector3(-0.1f,0,0);
+
     }
 }
